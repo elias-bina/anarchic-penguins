@@ -10,8 +10,8 @@ int main(int argc, char const *argv[]) {
   std::shared_ptr<GameWorld> world =
       std::shared_ptr<GameWorld>(new GameWorld(player));
 
-  std::cout << "Hello mario, your player is at " << world->_player->_pos_x
-            << ";" << world->_player->_pos_y << std::endl;
+  std::cout << "Hello mario, your player is at " << world->_player->_position._x
+            << ";" << world->_player->_position._y << std::endl;
 
   std::srand(std::time(nullptr));
 
@@ -35,8 +35,9 @@ int main(int argc, char const *argv[]) {
       break;
     }
 
-    std::cout << "Hello mario, your player is at " << world->_player->_pos_x
-              << ";" << world->_player->_pos_y << std::endl;
+    std::cout << "Hello mario, your player is at "
+              << world->_player->_position._x << ";"
+              << world->_player->_position._y << std::endl;
   }
 
   return 0;
