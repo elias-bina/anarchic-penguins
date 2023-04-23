@@ -6,6 +6,7 @@ HELLO-EXE-NAME = $(BIN)/hello-make-exe
 
 
 HELLO-EXE-SRCS = src/main.cpp 					\
+								 src/game.cpp 					\
 								 ${ENTITIES-SRCS} 			\
 								 ${ENVIRONNEMENT-SRCS}
 

@@ -1,3 +1,5 @@
+#ifndef _AN_PEN_ENTITIES_PLAYER
+#define _AN_PEN_ENTITIES_PLAYER
 
 #include <entities/entity.h>
 
@@ -9,8 +11,10 @@ public:
 
   void Display();
 
-  void move_x(uint32_t pos);
-  void move_y(uint32_t pos);
+  void move_x(int32_t pos);
+  void move_y(int32_t pos);
 
   Position _position;
 };
+
+#endif //_AN_PEN_ENTITIES_PLAYER
