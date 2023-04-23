@@ -1,9 +1,14 @@
+#ifndef _AN_PEN_UTILS_POSITION_H_
+#define _AN_PEN_UTILS_POSITION_H_
+
 #include <cstdint>
 
 class Position {
 private:
 public:
-  uint32_t _x;
-  uint32_t _y;
-  uint32_t _z_plane;
+  int32_t _x;
+  int32_t _y;
+  int32_t _z_plane;
 };
+
+#endif //_AN_PEN_UTILS_POSITION_H_
