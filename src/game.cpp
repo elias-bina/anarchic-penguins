@@ -4,8 +4,6 @@
 Game::Game(sf::RenderWindow &window) : _window{window} {}
 
 void Game::run() {
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
 
   while (_window.isOpen()) {
     sf::Event event;
@@ -15,7 +13,10 @@ void Game::run() {
     }
 
     _window.clear();
-    _window.draw(shape);
+
+    _gameworld._player->move_at_random();
+    _gameworld.Display(_window);
+
     _window.display();
   }
 }
