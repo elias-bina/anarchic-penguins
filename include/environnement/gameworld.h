@@ -12,6 +12,8 @@ public:
   GameWorld();
   ~GameWorld();
 
+  void Display(sf::RenderWindow &window);
+
   std::shared_ptr<Player> _player;
 };
 

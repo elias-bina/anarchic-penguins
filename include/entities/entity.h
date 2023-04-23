@@ -3,7 +3,7 @@
 
 #include "environnement/world-entity.h"
 
-class Entity : WorldEntity {
+class Entity : public WorldEntity {
 private:
 public:
   // HealthPool health;
