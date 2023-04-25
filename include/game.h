@@ -13,6 +13,9 @@ private:
 
   GameWorld _gameworld;
 
+  std::chrono::time_point<std::chrono::steady_clock> _pre_update;
+  std::chrono::time_point<std::chrono::steady_clock> _post_update;
+
 public:
   Game(sf::RenderWindow &window);
 
