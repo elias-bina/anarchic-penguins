@@ -1,10 +1,13 @@
 
+#include <chrono>
+#include <thread>
+
 #include "game.h"
 
 Game::Game(sf::RenderWindow &window) : _window{window} {}
 
 void Game::run() {
-
+  _pre_update = std::chrono::steady_clock::now();
   while (_window.isOpen()) {
     sf::Event event;
     while (_window.pollEvent(event)) {
@@ -14,7 +17,11 @@ void Game::run() {
 
     _window.clear();
 
-    _gameworld._player->move_at_random();
+    _post_update = _pre_update;
+    _pre_update = std::chrono::steady_clock::now();
+    _gameworld.Update(std::chrono::duration_cast<std::chrono::nanoseconds>(
+        _pre_update - _post_update));
+
     _gameworld.Display(_window);
 
     _window.display();

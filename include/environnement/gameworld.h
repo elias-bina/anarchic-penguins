@@ -13,6 +13,7 @@ public:
   ~GameWorld();
 
   void Display(sf::RenderWindow &window);
+  void Update(std::chrono::nanoseconds duration);
 
   std::shared_ptr<Player> _player;
 };
