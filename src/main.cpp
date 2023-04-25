@@ -13,6 +13,7 @@ int main(int argc, char const *argv[]) {
   window.setFramerateLimit(144);
 
   Game game(window);
+  window.setActive(false);
   game.run();
 
   return 0;
