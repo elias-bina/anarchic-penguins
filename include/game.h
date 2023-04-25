@@ -9,12 +9,15 @@
 
 class Game {
 private:
+  void renderThreadFunc();
+  void updateThreadFunc();
+
   sf::RenderWindow &_window;
 
   GameWorld _gameworld;
 
-  std::chrono::time_point<std::chrono::steady_clock> _pre_update;
-  std::chrono::time_point<std::chrono::steady_clock> _post_update;
+  std::chrono::time_point<std::chrono::steady_clock> _curr_time;
+  std::chrono::time_point<std::chrono::steady_clock> _prev_time;
 
 public:
   Game(sf::RenderWindow &window);
