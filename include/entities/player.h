@@ -11,11 +11,10 @@ public:
   Player();
   ~Player();
 
-  void Display(sf::RenderWindow &window);
   void Update(std::chrono::nanoseconds duration);
 
-  void move_x(int32_t pos);
-  void move_y(int32_t pos);
+  void move_x(float pos);
+  void move_y(float pos);
 
   void move_at_random();
 

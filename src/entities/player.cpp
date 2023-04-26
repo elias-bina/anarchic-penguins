@@ -4,23 +4,9 @@
 
 #include <iostream>
 
-constexpr float player_size = 100;
-
-Player::Player() : Entity() {
-  _sprite_shape = std::shared_ptr<sf::Shape>(new sf::CircleShape(player_size));
-  _sprite_shape->setFillColor(sf::Color::Green);
-}
+Player::Player() : Entity() {}
 
 Player::~Player() {}
-
-void Player::Display(sf::RenderWindow &window) {
-  if (_sprite_shape != nullptr) {
-    _sprite_shape->setPosition(sf::Vector2f(
-        window_size_x / 2 - player_size + graphic_step * _position._x,
-        window_size_y / 2 - player_size + graphic_step * _position._y));
-    window.draw(*_sprite_shape);
-  }
-}
 
 void Player::Update(std::chrono::nanoseconds duration) {
   move_at_random();
@@ -29,8 +15,12 @@ void Player::Update(std::chrono::nanoseconds duration) {
   return;
 }
 
-void Player::move_x(int32_t pos) { _position._x += pos; }
-void Player::move_y(int32_t pos) { _position._y += pos; }
+void Player::move_x(float pos) {
+  this->setPosition(this->getPosition() + sf::Vector2f(pos, 0.0f));
+}
+void Player::move_y(float pos) {
+  this->setPosition(this->getPosition() + sf::Vector2f(0.0f, pos));
+}
 
 void Player::move_at_random() {
   if (!_has_set_seed) {

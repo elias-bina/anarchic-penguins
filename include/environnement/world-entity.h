@@ -8,7 +8,7 @@
 
 #include "utils/position.h"
 
-class WorldEntity {
+class WorldEntity : public sf::Transformable, public sf::Drawable {
 private:
 protected:
   std::shared_ptr<sf::Shape> _sprite_shape;
@@ -16,9 +16,10 @@ protected:
 public:
   WorldEntity();
 
-  virtual void Display(sf::RenderWindow &window) = 0;
+  virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
   virtual void Update(std::chrono::nanoseconds duration) = 0;
 
-  Position _position;
+  int32_t _z_plane;
+  int32_t _z_position;
 };
 #endif //_AN_PEN_ENVIRONNEMENT_WORLDENTITY_H_
