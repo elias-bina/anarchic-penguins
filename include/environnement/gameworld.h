@@ -5,14 +5,14 @@
 
 #include "entities/player.h"
 
-class GameWorld {
+class GameWorld : public sf::Drawable {
 private:
 public:
   GameWorld(std::shared_ptr<Player> player);
   GameWorld();
   ~GameWorld();
 
-  void Display(sf::RenderWindow &window);
+  void draw(sf::RenderTarget &target, sf::RenderStates states) const;
   void Update(std::chrono::nanoseconds duration);
 
   std::shared_ptr<Player> _player;

@@ -6,7 +6,9 @@ GameWorld::GameWorld() { _player = std::shared_ptr<Player>(new Player()); }
 
 GameWorld::~GameWorld(){};
 
-void GameWorld::Display(sf::RenderWindow &window) { _player->Display(window); }
+void GameWorld::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+  _player->draw(target, states);
+}
 
 void GameWorld::Update(std::chrono::nanoseconds duration) {
   _player->Update(duration);
