@@ -17,9 +17,12 @@ void Game::updateThreadFunc() {
   }
 }
 
-Game::Game(sf::RenderWindow &window) : _window{window} {}
+Game::Game(sf::RenderWindow &window)
+    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0),
+                                  sf::Vector2f(window.getSize())} {}
 
 void Game::run() {
+  _window.setView(_main_view);
 
   std::thread updateThread(&Game::updateThreadFunc, this);
 
