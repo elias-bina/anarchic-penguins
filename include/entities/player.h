@@ -3,8 +3,6 @@
 
 #include <entities/entity.h>
 
-constexpr int32_t graphic_step = 10;
-
 class Player : public Entity {
 private:
 public:
@@ -13,10 +11,10 @@ public:
 
   void Update(std::chrono::nanoseconds duration);
 
-  void move_x(float pos);
-  void move_y(float pos);
+  void move_x_pixels(float pos);
+  void move_y_pixels(float pos);
 
-  void move_at_random();
+  void move_at_random(std::chrono::nanoseconds duration);
 
   bool _has_set_seed = false;
 };

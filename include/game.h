@@ -9,7 +9,6 @@
 
 class Game {
 private:
-  void renderThreadFunc();
   void updateThreadFunc();
 
   sf::RenderWindow &_window;

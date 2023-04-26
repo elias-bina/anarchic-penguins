@@ -13,7 +13,7 @@ void Game::updateThreadFunc() {
     _curr_time = std::chrono::steady_clock::now();
     _gameworld.Update(std::chrono::duration_cast<std::chrono::nanoseconds>(
         _curr_time - _prev_time));
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    // std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
 }
 
