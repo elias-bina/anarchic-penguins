@@ -13,6 +13,8 @@ private:
   void updateThreadFunc();
 
   sf::RenderWindow &_window;
+  // TODO : Create a real view management class (for multiplayer and minimap)
+  sf::View _main_view;
 
   GameWorld _gameworld;
 
