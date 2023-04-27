@@ -1,7 +1,7 @@
 #ifndef _AN_PEN_ENTITIES_PLAYER
 #define _AN_PEN_ENTITIES_PLAYER
 
-#include <entities/entity.h>
+#include "entities/entity.h"
 
 class Player : public Entity {
 private:
