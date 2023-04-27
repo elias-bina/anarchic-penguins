@@ -14,8 +14,7 @@ private:
 
   bool isActionTriggered(DigitalActionList action, uint32_t controller_index);
   bool isActionTriggered(AnalogActionList action, uint32_t controller_index);
-  float getAnalogActionPosition(AnalogActionList action,
-                                uint32_t controller_index);
+  float getAnalogActionPosition(AnalogActionList action, uint32_t controller_index);
 
 public:
   InputManager();

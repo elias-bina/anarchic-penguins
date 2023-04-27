@@ -18,16 +18,11 @@ void Player::Update(std::chrono::nanoseconds duration) {
   return;
 }
 
-void Player::move_x_pixels(float pos) {
-  this->setPosition(this->getPosition() + sf::Vector2f(pos, 0.0f));
-}
-void Player::move_y_pixels(float pos) {
-  this->setPosition(this->getPosition() + sf::Vector2f(0.0f, pos));
-}
+void Player::move_x_pixels(float pos) { this->setPosition(this->getPosition() + sf::Vector2f(pos, 0.0f)); }
+void Player::move_y_pixels(float pos) { this->setPosition(this->getPosition() + sf::Vector2f(0.0f, pos)); }
 
 void Player::move_at_random(std::chrono::nanoseconds duration) {
-  static std::chrono::time_point<std::chrono::steady_clock> last_move_choice =
-      std::chrono::steady_clock::now();
+  static std::chrono::time_point<std::chrono::steady_clock> last_move_choice = std::chrono::steady_clock::now();
 
   static int choice = 0;
 
@@ -37,8 +32,7 @@ void Player::move_at_random(std::chrono::nanoseconds duration) {
     _has_set_seed = true;
   }
 
-  if (std::chrono::duration_cast<std::chrono::nanoseconds>(
-          std::chrono::steady_clock::now() - last_move_choice) >
+  if (std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - last_move_choice) >
       std::chrono::milliseconds(NB_MILLISECONDS_RANDOM_CONTINUES)) {
     choice = std::rand() % 4;
     last_move_choice = std::chrono::steady_clock::now();
