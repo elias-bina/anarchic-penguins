@@ -8,14 +8,13 @@
 class GameWorld : public sf::Drawable {
 private:
 public:
-  GameWorld(std::shared_ptr<Player> player);
   GameWorld();
   ~GameWorld();
 
   void draw(sf::RenderTarget &target, sf::RenderStates states) const;
   void Update(std::chrono::nanoseconds duration);
 
-  std::shared_ptr<Player> _player;
+  std::vector<std::shared_ptr<Player>> _player_list;
 };
 
 #endif //_AN_PEN_ENVIRONNEMENT_GAMEWORLD

@@ -16,7 +16,8 @@ void Game::updateThreadFunc() {
 }
 
 Game::Game(sf::RenderWindow &window)
-    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0), sf::Vector2f(window.getSize())} {}
+    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0), sf::Vector2f(window.getSize())},
+      _input_manager{_gameworld._player_list} {}
 
 void Game::run() {
   _window.setView(_main_view);
