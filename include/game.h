@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "environnement/gameworld.h"
+#include "input/input-manager.h"
 
 class Game {
 private:
@@ -16,6 +17,8 @@ private:
   sf::View _main_view;
 
   GameWorld _gameworld;
+
+  InputManager _input_manager;
 
   std::chrono::time_point<std::chrono::steady_clock> _curr_time;
   std::chrono::time_point<std::chrono::steady_clock> _prev_time;

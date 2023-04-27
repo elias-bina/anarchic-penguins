@@ -1,17 +1,19 @@
 include src/entities/project.mk
 include src/environnement/project.mk
+include src/input/project.mk
 
-HELLO-EXE-NAME = $(BIN)/hello-make-exe
-
-
-
-HELLO-EXE-SRCS = src/main.cpp 					\
-								 src/game.cpp 					\
-								 ${ENTITIES-SRCS} 			\
-								 ${ENVIRONNEMENT-SRCS}
+ANARCHIC_PENGUINS-EXE-NAME = $(BIN)/anarchic-penguins-make-exe
 
 
-HELLO-EXE-OBJS:=$(HELLO-EXE-SRCS:%.cpp=$(BIN)/%.o)
-${HELLO-EXE-NAME}: ${HELLO-EXE-OBJS}
 
-TARGETS+=${HELLO-EXE-NAME}
+ANARCHIC_PENGUINS-EXE-SRCS = src/main.cpp 					\
+								 						 src/game.cpp 					\
+								 						 ${ENTITIES-SRCS} 			\
+								 						 ${ENVIRONNEMENT-SRCS}  \
+								 						 ${INPUT-SRCS}
+
+
+ANARCHIC_PENGUINS-EXE-OBJS:=$(ANARCHIC_PENGUINS-EXE-SRCS:%.cpp=$(BIN)/%.o)
+${ANARCHIC_PENGUINS-EXE-NAME}: ${ANARCHIC_PENGUINS-EXE-OBJS}
+
+TARGETS+=${ANARCHIC_PENGUINS-EXE-NAME}

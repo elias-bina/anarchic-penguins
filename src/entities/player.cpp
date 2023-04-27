@@ -14,7 +14,7 @@ Player::~Player() {}
 void Player::Update(std::chrono::nanoseconds duration) {
   move_at_random(duration);
   constexpr std::chrono::nanoseconds µs = std::chrono::microseconds(1);
-  std::cout << "Time elapsed : " << duration / µs << "µs" << std::endl;
+  // std::cout << "Time elapsed : " << duration / µs << "µs" << std::endl;
   return;
 }
 
