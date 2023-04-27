@@ -11,14 +11,12 @@ void Game::updateThreadFunc() {
   while (_window.isOpen()) {
     _prev_time = _curr_time;
     _curr_time = std::chrono::steady_clock::now();
-    _gameworld.Update(std::chrono::duration_cast<std::chrono::nanoseconds>(
-        _curr_time - _prev_time));
+    _gameworld.Update(std::chrono::duration_cast<std::chrono::nanoseconds>(_curr_time - _prev_time));
   }
 }
 
 Game::Game(sf::RenderWindow &window)
-    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0),
-                                  sf::Vector2f(window.getSize())} {}
+    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0), sf::Vector2f(window.getSize())} {}
 
 void Game::run() {
   _window.setView(_main_view);
