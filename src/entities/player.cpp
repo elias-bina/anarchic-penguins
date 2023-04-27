@@ -14,7 +14,7 @@ Player::~Player() {}
 void Player::Update(std::chrono::nanoseconds duration) {
   move_at_random(duration);
   constexpr std::chrono::nanoseconds µs = std::chrono::microseconds(1);
-  // std::cout << "Time elapsed : " << duration / µs << "µs" << std::endl;
+  std::cout << "Time elapsed : " << duration / µs << "µs" << std::endl;
   return;
 }
 
@@ -55,3 +55,7 @@ void Player::move_at_random(std::chrono::nanoseconds duration) {
     break;
   }
 }
+
+void Player::set_input_controller(std::shared_ptr<InputController> controller) { _controller = controller; }
+
+bool Player::has_controller() { return _controller != nullptr; }
