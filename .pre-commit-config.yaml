@@ -14,6 +14,6 @@ repos:
     hooks:
       - id: clang-format
         args: [--style=file]
-      # - id: clang-tidy
+      - id: clang-tidy
       # - id: cppcheck
       # - id: cpplint

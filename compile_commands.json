@@ -1,0 +1,93 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/main.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/game.o",
+      "src/game.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/game.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/game.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/entities/player.o",
+      "src/entities/player.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/entities/player.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/entities/player.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/environnement/gameworld.o",
+      "src/environnement/gameworld.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/environnement/gameworld.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/environnement/gameworld.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/environnement/world-entity.o",
+      "src/environnement/world-entity.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/environnement/world-entity.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/environnement/world-entity.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/input/input-controller.o",
+      "src/input/input-controller.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/input/input-controller.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/input/input-controller.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./include",
+      "-o",
+      "bin/src/input/input-manager.o",
+      "src/input/input-manager.cpp"
+    ],
+    "directory": "/home/elias/workspace/prog/C++/anarchic-penguins",
+    "file": "/home/elias/workspace/prog/C++/anarchic-penguins/src/input/input-manager.cpp",
+    "output": "/home/elias/workspace/prog/C++/anarchic-penguins/bin/src/input/input-manager.o"
+  }
+]
