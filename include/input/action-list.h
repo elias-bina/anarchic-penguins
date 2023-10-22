@@ -35,7 +35,6 @@ enum DigitalActionList {
 
   PRIMARY_JOY_CLICK,
   SECONDARY_JOY_CLICK,
-
 };
 
 #endif //_AN_PEN_INPUT_ACTION_LIST_H_

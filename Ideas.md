@@ -1,6 +1,6 @@
 # Classes
 
-- Warrior : 
+- Warrior :
     - Slow melee warrior that hits hard. High HP cap, and damage based abilities.
 
 # Mechanics
