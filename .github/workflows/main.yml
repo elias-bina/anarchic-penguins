@@ -8,8 +8,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Precommit checks
-        run: |
-          cd ${{ github.workspace }} && pre-commit install && pre-commit run --all-files
+        uses: pre-commit/action@v3.0.0
       - name: Builds the executable
         run: |
           cd ${{ github.workspace }} && make clean && make -j$(nproc)
