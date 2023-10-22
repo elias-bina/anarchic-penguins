@@ -7,6 +7,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+      - name: Generate compile commands
+        run:
+          cd ${{ github.workspace }} && make clean && bear -- make -j$(nproc)
       - name: Precommit checks
         uses: pre-commit/action@v3.0.0
       - name: Builds the executable
