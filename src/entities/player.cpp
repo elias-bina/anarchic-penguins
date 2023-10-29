@@ -7,7 +7,7 @@
 constexpr float MAX_PLAYER_SPEED = 200.0f;
 constexpr int32_t NB_MILLISECONDS_RANDOM_CONTINUES = 50;
 
-Player::Player() : Entity() {}
+Player::Player() : Entity(), _controller{nullptr} {}
 
 Player::~Player() {}
 
@@ -57,5 +57,6 @@ void Player::move_at_random(std::chrono::nanoseconds duration) {
 }
 
 void Player::set_input_controller(std::shared_ptr<InputController> controller) { _controller = controller; }
+void Player::unset_input_controller() { _controller = nullptr; }
 
 bool Player::has_controller() { return _controller != nullptr; }

@@ -16,11 +16,13 @@ void Game::updateThreadFunc() {
 }
 
 Game::Game(sf::RenderWindow &window)
-    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0), sf::Vector2f(window.getSize())},
-      _input_manager{_gameworld._player_list} {}
+    : _window{window}, _main_view{sf::Vector2f(0.0, 0.0), sf::Vector2f(window.getSize())}, _gameworld{GameWorld()},
+      _input_manager{} {}
 
 void Game::run() {
   _window.setView(_main_view);
+
+  _gameworld._player_list.push_back(Player());
 
   std::thread updateThread(&Game::updateThreadFunc, this);
 
