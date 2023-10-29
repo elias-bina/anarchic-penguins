@@ -13,7 +13,7 @@ public:
   Player();
   ~Player();
 
-  void Update(std::chrono::nanoseconds duration);
+  void Update(std::chrono::nanoseconds duration) override;
 
   void move_x_pixels(float pos);
   void move_y_pixels(float pos);

@@ -14,8 +14,8 @@ private:
   int32_t _joystick_index;
 
 public:
-  InputController(int32_t joystick_index, bool map_keyboard_to_this);
-  InputController(bool map_keyboard_to_this);
+  explicit InputController(int32_t joystick_index, bool map_keyboard_to_this);
+  explicit InputController(bool map_keyboard_to_this);
 
   void add_joystick(int32_t joystick_index);
   int32_t get_joystick_index();
