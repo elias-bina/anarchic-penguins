@@ -28,7 +28,7 @@ private:
   bool _is_keyboard_mapped;
 
 public:
-  InputManager(std::vector<std::shared_ptr<Player>> &player_list);
+  explicit InputManager(std::vector<std::shared_ptr<Player>> &player_list);
 
   void connectJoystick(uint32_t joystick_id);
   void disconnectJoystick(uint32_t joystick_id);

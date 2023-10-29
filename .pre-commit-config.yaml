@@ -16,6 +16,6 @@ repos:
         args: [--style=file]
       - id: clang-tidy
         args: [-checks=*]
-      # - id: cppcheck
-      #   args: ["--language=c++", "-Iinclude/"]
+      - id: cppcheck
+        args: ["--language=c++", "-Iinclude/"]
       # - id: cpplint

@@ -24,7 +24,7 @@ private:
   std::chrono::time_point<std::chrono::steady_clock> _prev_time;
 
 public:
-  Game(sf::RenderWindow &window);
+  explicit Game(sf::RenderWindow &window);
 
   void run();
 };

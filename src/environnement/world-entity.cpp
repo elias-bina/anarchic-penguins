@@ -2,9 +2,9 @@
 #include "environnement/world-entity.h"
 #include "constants.h"
 
-WorldEntity::WorldEntity() : _z_position{0}, _z_plane{0} {
-  _sprite_shape =
-      std::shared_ptr<sf::Shape>(new sf::RectangleShape(sf::Vector2f(default_entity_size_x, default_entity_size_y)));
+WorldEntity::WorldEntity()
+    : _z_position{0}, _z_plane{0}, _sprite_shape{std::shared_ptr<sf::Shape>(new sf::RectangleShape(
+                                       sf::Vector2f(default_entity_size_x, default_entity_size_y)))} {
   _sprite_shape->setOrigin(_sprite_shape->getScale() / 2.0f);
   _sprite_shape->setFillColor(sf::Color::Green);
 }
