@@ -20,6 +20,8 @@ public:
   void move_at_random(std::chrono::nanoseconds duration);
 
   void set_input_controller(std::shared_ptr<InputController> controller);
+  void unset_input_controller();
+
   bool has_controller();
 
   bool _has_set_seed = false;

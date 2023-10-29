@@ -3,7 +3,7 @@
 
 $(BIN)/%.o:%.cpp
 	mkdir -p $(dir $@)
-	gcc -o $@ -c $^ $(INCLUDES)
+	gcc -o $@ -c $^ $(INCLUDES) $(CFLAGS)
 
 $(BIN)/%-make-exe:
 	mkdir -p $(dir $@)
