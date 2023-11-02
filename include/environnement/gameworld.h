@@ -2,6 +2,7 @@
 #define _AN_PEN_ENVIRONNEMENT_GAMEWORLD
 
 #include <memory>
+#include <mutex>
 #include <optional>
 
 #include "entities/player.h"
@@ -23,6 +24,7 @@ public:
   void draw(sf::RenderTarget &target, sf::RenderStates states) const;
   void Update(std::chrono::nanoseconds duration);
 
+  std::mutex _player_list_mutex;
   std::vector<Player> _player_list;
 };
 

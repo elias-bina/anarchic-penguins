@@ -22,6 +22,7 @@ public:
   bool has_joystick();
 
   void give_keyboard();
+  void remove_keyboard();
   bool has_keyboard();
 };
 

@@ -1,3 +1,4 @@
+#include <iostream>
 
 #include "environnement/gameworld.h"
 
@@ -65,7 +66,11 @@ void GameWorld::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 }
 
 void GameWorld::Update(std::chrono::nanoseconds duration) {
+  // TODO: Check if there is a player with unbinded controller
+
+  _player_list_mutex.lock();
   for (size_t i = 0; i < _player_list.size(); i++) {
     _player_list[i].Update(duration);
   }
+  _player_list_mutex.unlock();
 }

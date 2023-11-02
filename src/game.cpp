@@ -2,6 +2,7 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
+#include <unistd.h>
 
 #include "game.h"
 
@@ -22,9 +23,15 @@ Game::Game(sf::RenderWindow &window)
 void Game::run() {
   _window.setView(_main_view);
 
-  _gameworld._player_list.push_back(Player());
-
   std::thread updateThread(&Game::updateThreadFunc, this);
+
+  _gameworld._player_list_mutex.lock();
+  _gameworld._player_list.push_back(Player());
+  _gameworld._player_list_mutex.unlock();
+  _gameworld._player_list_mutex.lock();
+  _gameworld._player_list.push_back(Player());
+  _gameworld._player_list_mutex.unlock();
+
 
   while (_window.isOpen()) {
     sf::Event event;
