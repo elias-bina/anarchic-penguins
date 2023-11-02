@@ -1,6 +1,7 @@
+#include <iostream>
 
-#include "environnement/world-entity.h"
 #include "constants.h"
+#include "environnement/world-entity.h"
 
 WorldEntity::WorldEntity()
     : _z_position{0}, _z_plane{0}, _sprite_shape{std::shared_ptr<sf::Shape>(new sf::RectangleShape(

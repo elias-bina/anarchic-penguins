@@ -1,6 +1,8 @@
 #ifndef _AN_PEN_ENTITIES_PLAYER
 #define _AN_PEN_ENTITIES_PLAYER
 
+#include <random>
+
 #include "entities/entity.h"
 class Player;
 #include "input/input-controller.h"
@@ -24,7 +26,11 @@ public:
 
   bool has_controller();
 
-  bool _has_set_seed = false;
+  std::mt19937 gen;
+  std::uniform_int_distribution<> distrib;
+
+  std::chrono::time_point<std::chrono::steady_clock> last_move_choice;
+  int choice = 0;
 };
 
 #endif //_AN_PEN_ENTITIES_PLAYER

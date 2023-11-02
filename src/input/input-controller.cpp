@@ -21,4 +21,5 @@ bool InputController::has_joystick() { return _joystick_index != UNDEFINED_CONTR
 
 
 void InputController::give_keyboard() { _is_keyboard_holder = true; }
+void InputController::remove_keyboard() { _is_keyboard_holder = false; }
 bool InputController::has_keyboard() { return _is_keyboard_holder; }
