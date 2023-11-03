@@ -1,7 +1,7 @@
 #ifndef _AN_PEN_INPUT_INPUT_MANAGER_H_
 #define _AN_PEN_INPUT_INPUT_MANAGER_H_
 
-#include <vector>
+#include <unordered_map>
 
 #include "input/action-list.h"
 #include "input/input-controller.h"
@@ -13,7 +13,7 @@ private:
   bool isActionTriggered(AnalogActionList action, uint32_t controller_index);
   float getAnalogActionPosition(AnalogActionList action, uint32_t controller_index);
 
-  std::vector<InputController> _controller_list;
+  std::unordered_map<int32_t, InputController> _controller_list;
 
   bool _is_keyboard_mapped;
 

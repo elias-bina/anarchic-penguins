@@ -5,11 +5,11 @@
 
 
 InputController::InputController(int32_t joystick_index, bool map_keyboard_to_this)
-    : _joystick_index{joystick_index}, _is_keyboard_holder{map_keyboard_to_this}, _has_player{false} {
-  std::cout << "Joystick connected : " << joystick_index << ", Keyboard : " << map_keyboard_to_this << std::endl;
-}
+    : _joystick_index{joystick_index}, _is_keyboard_holder{map_keyboard_to_this}, _has_player{false} {}
 
 InputController::InputController(bool map_keyboard_to_this) : InputController(UNDEFINED_INDEX, map_keyboard_to_this) {}
+
+InputController::InputController() : InputController(false) {}
 
 InputController::~InputController() {}
 
