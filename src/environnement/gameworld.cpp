@@ -2,16 +2,42 @@
 
 #include "environnement/gameworld.h"
 
-GameWorld::GameWorld() {}
+GameWorld::GameWorld() : _all_player_controlled{false} {}
 
 GameWorld::~GameWorld(){};
 
-std::optional<Player *> GameWorld::get_free_player(NewPlayerChoice player_choice, uint32_t from_player_index) {
+void GameWorld::add_new_player(Player player) {
+  _player_list_mutex.lock();
+  _player_list.push_back(player);
+  _all_player_controlled = false;
+  _player_list_mutex.unlock();
+}
+
+void GameWorld::bind_player(InputController *input_controller) {
+  Player *player_to_bind = get_free_player(NEXT_PLAYER, 0);
+  if (!player_to_bind) {
+    _all_player_controlled = true;
+    return;
+  }
+
+  player_to_bind->set_input_controller(input_controller);
+  input_controller->set_player();
+
+  if (!get_free_player(NEXT_PLAYER, 0)) {
+    _all_player_controlled = true;
+  }
+}
+
+
+bool GameWorld::has_uncontrolled_player() { return !_all_player_controlled; }
+
+
+Player *GameWorld::get_free_player(NewPlayerChoice player_choice, uint32_t from_player_index) {
   if (player_choice == NewPlayerChoice::RANDOM_PLAYER) {
     // TODO : Real rand
     from_player_index = 0;
   } else if (from_player_index >= _player_list.size()) {
-    return std::nullopt;
+    return nullptr;
   }
 
   if (player_choice == NewPlayerChoice::NEXT_PLAYER) {
@@ -31,7 +57,7 @@ std::optional<Player *> GameWorld::get_free_player(NewPlayerChoice player_choice
       free_player_iterator =
           std::find_if(_player_list.begin(), search_start_it, [](Player p) { return !p.has_controller(); });
       if (free_player_iterator == search_start_it) {
-        return std::nullopt;
+        return nullptr;
       }
     }
     return &(*free_player_iterator);
@@ -51,12 +77,12 @@ std::optional<Player *> GameWorld::get_free_player(NewPlayerChoice player_choice
       free_player_iterator =
           std::find_if(_player_list.rbegin(), search_start_it, [](Player p) { return !p.has_controller(); });
       if (free_player_iterator == search_start_it) {
-        return std::nullopt;
+        return nullptr;
       }
     }
     return &(*free_player_iterator);
   }
-  return std::nullopt;
+  return nullptr;
 }
 
 void GameWorld::draw(sf::RenderTarget &target, sf::RenderStates states) const {
@@ -66,8 +92,6 @@ void GameWorld::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 }
 
 void GameWorld::Update(std::chrono::nanoseconds duration) {
-  // TODO: Check if there is a player with unbinded controller
-
   _player_list_mutex.lock();
   for (size_t i = 0; i < _player_list.size(); i++) {
     _player_list[i].Update(duration);

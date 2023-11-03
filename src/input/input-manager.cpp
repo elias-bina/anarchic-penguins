@@ -1,3 +1,5 @@
+#include <SFML/Graphics.hpp>
+
 #include <iostream>
 
 #include "input/input-manager.h"
@@ -54,4 +56,15 @@ void InputManager::disconnectJoystick(uint32_t joystick_id) {
       _controller_list.push_back(InputController(true));
     }
   }
+}
+
+InputController *InputManager::controllerFromIndex(uint32_t controller_index) {
+  std::vector<InputController>::iterator controller_iterator =
+      std::find_if(_controller_list.begin(), _controller_list.end(),
+                   [controller_index](InputController c) { return c.get_joystick_index() == controller_index; });
+
+  if (controller_iterator == _controller_list.end())
+    return nullptr;
+
+  return &(*controller_iterator);
 }
