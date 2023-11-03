@@ -17,6 +17,7 @@ private:
 public:
   explicit InputController(int32_t joystick_index, bool map_keyboard_to_this);
   explicit InputController(bool map_keyboard_to_this);
+  InputController();
 
   ~InputController();
 
