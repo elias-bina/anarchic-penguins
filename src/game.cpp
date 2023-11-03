@@ -25,20 +25,26 @@ void Game::run() {
 
   std::thread updateThread(&Game::updateThreadFunc, this);
 
-  _gameworld._player_list_mutex.lock();
-  _gameworld._player_list.push_back(Player());
-  _gameworld._player_list_mutex.unlock();
-  _gameworld._player_list_mutex.lock();
-  _gameworld._player_list.push_back(Player());
-  _gameworld._player_list_mutex.unlock();
+
+  _gameworld.add_new_player(Player());
+  _gameworld.add_new_player(Player());
 
 
   while (_window.isOpen()) {
+    // TODO: si un joystick unbind appuie sur un bouton, il prend le contrôle d'un player
     sf::Event event;
     while (_window.pollEvent(event)) {
       switch (event.type) {
       case sf::Event::Closed:
         _window.close();
+        break;
+
+      case sf::Event::JoystickButtonPressed:
+        if (_gameworld.has_uncontrolled_player()) {
+          InputController *controller = _input_manager.controllerFromIndex(event.joystickButton.joystickId);
+          if (!controller->has_player())
+            _gameworld.bind_player(controller);
+        }
         break;
 
       case sf::Event::JoystickConnected:
@@ -53,6 +59,11 @@ void Game::run() {
         break;
       }
     }
+
+    // // TODO: Check if there is a player with unbinded controller
+    // Player * player = _gameworld.get_free_player(NEXT_PLAYER, 0);
+    // if(player)
+    //   player->set_input_controller();
 
     _window.clear();
     _window.draw(_gameworld);

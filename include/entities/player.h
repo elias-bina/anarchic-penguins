@@ -1,15 +1,19 @@
 #ifndef _AN_PEN_ENTITIES_PLAYER
 #define _AN_PEN_ENTITIES_PLAYER
 
+#include <SFML/System.hpp>
+
 #include <random>
 
 #include "entities/entity.h"
-class Player;
 #include "input/input-controller.h"
+
 
 class Player : public Entity {
 private:
-  std::shared_ptr<InputController> _controller;
+  InputController *_controller;
+
+  sf::Vector2f _move_direction;
 
 public:
   Player();
@@ -21,7 +25,7 @@ public:
   void move_y_pixels(float pos);
   void move_at_random(std::chrono::nanoseconds duration);
 
-  void set_input_controller(std::shared_ptr<InputController> controller);
+  void set_input_controller(InputController *controller);
   void unset_input_controller();
 
   bool has_controller();

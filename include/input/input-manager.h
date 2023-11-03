@@ -23,6 +23,8 @@ public:
   void connectJoystick(uint32_t joystick_id);
   void disconnectJoystick(uint32_t joystick_id);
 
+  InputController *controllerFromIndex(uint32_t controller_index);
+
   bool isGlobalActionTriggered(DigitalActionList action);
   bool isGlobalActionTriggered(AnalogActionList action);
 };
