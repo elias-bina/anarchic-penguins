@@ -1,7 +1,8 @@
 #ifndef _AN_PEN_INPUT_ACTION_LIST_H_
 #define _AN_PEN_INPUT_ACTION_LIST_H_
 
-enum AnalogActionList {
+enum AnalogActionList
+{
   PRIMARY_LEFT,
   PRIMARY_RIGHT,
   PRIMARY_UP,
@@ -16,7 +17,8 @@ enum AnalogActionList {
   RIGHT_TRIGGER,
 };
 
-enum DigitalActionList {
+enum DigitalActionList
+{
   MAP_ACTION,
   PAUSE_ACTION,
 
