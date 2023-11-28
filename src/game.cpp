@@ -55,6 +55,14 @@ void Game::run() {
         _input_manager.disconnectJoystick(event.joystickConnect.joystickId);
         break;
 
+      case sf::Event::KeyPressed:
+        if (_gameworld.has_uncontrolled_player()) {
+          InputController *controller = _input_manager.controllerWithKeyboard();
+          if (!controller->has_player())
+            _gameworld.bind_player(controller);
+        }
+        break;
+
       default:
         break;
       }
