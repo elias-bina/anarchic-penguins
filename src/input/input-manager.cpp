@@ -23,7 +23,7 @@ void InputManager::connectJoystick(uint32_t joystick_id) {
   if (_controller_list.find(joystick_id) != _controller_list.end())
     return;
 
-  if (_controller_list.find(UNDEFINED_INDEX) == _controller_list.end()) {
+  if (_controller_list.find(UNDEFINED_INDEX) != _controller_list.end()) {
     _controller_list[joystick_id] = _controller_list[UNDEFINED_INDEX];
     _controller_list[joystick_id].set_joystick(joystick_id);
     _controller_list.erase(UNDEFINED_INDEX);
@@ -61,5 +61,18 @@ InputController *InputManager::controllerFromIndex(uint32_t controller_index) {
     return nullptr;
   }
 
+  return &controller_iterator->second;
+}
+
+InputController *InputManager::controllerWithKeyboard() {
+  if (_controller_list.find(UNDEFINED_INDEX) != _controller_list.end()) {
+    return &_controller_list[UNDEFINED_INDEX];
+  }
+  std::unordered_map<int32_t, InputController>::iterator controller_iterator =
+      std::find_if(_controller_list.begin(), _controller_list.end(),
+                   [](std::pair<int32_t, InputController> c) { return !c.second.has_keyboard(); });
+  if (controller_iterator == _controller_list.end()) {
+    return nullptr;
+  }
   return &controller_iterator->second;
 }

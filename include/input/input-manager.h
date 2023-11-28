@@ -24,6 +24,7 @@ public:
   void disconnectJoystick(uint32_t joystick_id);
 
   InputController *controllerFromIndex(uint32_t controller_index);
+  InputController *controllerWithKeyboard();
 
   bool isGlobalActionTriggered(DigitalActionList action);
   bool isGlobalActionTriggered(AnalogActionList action);
