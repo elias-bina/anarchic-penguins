@@ -7,7 +7,7 @@ $(BIN)/%.o:%.cpp
 
 $(BIN)/%-make-exe:
 	mkdir -p $(dir $@)
-	g++ -o $(patsubst %-make-exe,%,$@) $^ $(LIBRARIES)
+	g++ -o $(patsubst %-make-exe,%,$@) $^ $(LDFLAGS)
 
 
 .PHONY:clean

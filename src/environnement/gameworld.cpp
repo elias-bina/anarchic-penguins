@@ -4,7 +4,7 @@
 
 GameWorld::GameWorld() : _all_player_controlled{false} {}
 
-GameWorld::~GameWorld(){};
+GameWorld::~GameWorld() {}
 
 void GameWorld::add_new_player(Player player) {
   _player_list_mutex.lock();

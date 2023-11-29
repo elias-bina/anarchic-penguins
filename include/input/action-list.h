@@ -1,7 +1,9 @@
 #ifndef _AN_PEN_INPUT_ACTION_LIST_H_
 #define _AN_PEN_INPUT_ACTION_LIST_H_
 
-enum AnalogActionList
+#include <bitset>
+
+enum class AnalogActionState
 {
   PRIMARY_LEFT,
   PRIMARY_RIGHT,
@@ -15,9 +17,18 @@ enum AnalogActionList
 
   LEFT_TRIGGER,
   RIGHT_TRIGGER,
+  ENUM_LEN
 };
 
-enum DigitalActionList
+class AnalogActionStateList {
+public:
+  AnalogActionStateList() = default;
+
+private:
+  float states[(unsigned int)AnalogActionState::ENUM_LEN];
+};
+
+enum class DigitalActionState
 {
   MAP_ACTION,
   PAUSE_ACTION,
@@ -37,6 +48,15 @@ enum DigitalActionList
 
   PRIMARY_JOY_CLICK,
   SECONDARY_JOY_CLICK,
+  ENUM_LEN
+};
+
+class DigitalActionStateList {
+public:
+  DigitalActionStateList() = default;
+
+private:
+  std::bitset<(size_t)AnalogActionState::ENUM_LEN> states;
 };
 
 #endif //_AN_PEN_INPUT_ACTION_LIST_H_

@@ -3,15 +3,20 @@
 
 #include <memory>
 
+#include "input/action-list.h"
+
 
 constexpr int32_t UNDEFINED_INDEX = -1;
 
 class InputController {
 private:
+  int32_t _joystick_index;
+
   bool _is_keyboard_holder;
   bool _has_player;
 
-  int32_t _joystick_index;
+  AnalogActionStateList _analog_actions;
+  DigitalActionStateList _digital_actions;
 
 
 public:

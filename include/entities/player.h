@@ -33,8 +33,8 @@ public:
   std::mt19937 gen;
   std::uniform_int_distribution<> distrib;
 
-  std::chrono::time_point<std::chrono::steady_clock> last_move_choice;
   int choice = 0;
+  std::chrono::time_point<std::chrono::steady_clock> last_move_choice;
 };
 
 #endif //_AN_PEN_ENTITIES_PLAYER
