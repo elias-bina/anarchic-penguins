@@ -1,12 +1,11 @@
 #ifndef _AN_PEN_INPUT_ACTION_LIST_H_
 #define _AN_PEN_INPUT_ACTION_LIST_H_
 
-#include <bitset>
-
 #include <SFML/System/Vector2.hpp>
+#include <bitset>
+#include <stdexcept>
 
-enum class AnalogActionState
-{
+enum class AnalogActionState {
   PRIMARY_HORIZONTAL,
   PRIMARY_VERTICAL,
 
@@ -19,7 +18,7 @@ enum class AnalogActionState
 
 class AnalogActionStateList {
 public:
-  AnalogActionStateList() = default;
+  AnalogActionStateList();
 
   void set_axis_value(AnalogActionState axis, float value);
 
@@ -35,8 +34,7 @@ private:
   float _right_trigger;
 };
 
-enum class DigitalActionState
-{
+enum class DigitalActionState {
   MAP_ACTION,
   PAUSE_ACTION,
 
@@ -57,6 +55,14 @@ enum class DigitalActionState
   SECONDARY_JOY_CLICK,
   ENUM_LEN
 };
+
+inline DigitalActionState &operator++(DigitalActionState &e, int) {
+  if (e == DigitalActionState::ENUM_LEN) {
+    throw std::out_of_range("for E& operator ++ (E&)");
+  }
+  e = DigitalActionState(static_cast<std::underlying_type<DigitalActionState>::type>(e) + 1);
+  return e;
+}
 
 class DigitalActionStateList {
 public:

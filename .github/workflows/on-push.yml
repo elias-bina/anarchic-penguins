@@ -1,5 +1,5 @@
-name: Build
-run-name: Build from ${{ github.actor }}
+name: Push
+run-name: Run checks and everything from ${{ github.actor }}
 on: [push]
 jobs:
   Build:
@@ -15,3 +15,10 @@ jobs:
       - name: Builds the executable
         run: |
           cd ${{ github.workspace }} && make clean && make -j$(nproc)
+  Test:
+    needs: Build
+    runs-on: self-hosted
+    steps:
+      - name: Input tests
+        run: |
+          cd ${{ github.workspace }} && ./bin/tests-input
