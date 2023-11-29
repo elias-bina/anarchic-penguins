@@ -4,6 +4,7 @@
 
 #include "input/action-list.h"
 
+AnalogActionStateList::AnalogActionStateList() : _left_trigger{0.0f}, _right_trigger{0.0f} {}
 
 void AnalogActionStateList::set_axis_value(AnalogActionState axis, float value) {
   switch (axis) {
@@ -51,17 +52,14 @@ float AnalogActionStateList::get_trigger(AnalogActionState trigger) {
     break;
 
   default:
-    std::cout << "I asked for a triggeeeeeeeeeeeeeeeeeeer" << std::endl;
-    abort();
+    throw std::invalid_argument{"I asked for a triggeeeeeeeeeeeeeeeeeeer"};
     break;
   }
 }
 
 void DigitalActionStateList::set_button_value(DigitalActionState button, bool value) {
-  if (button == DigitalActionState::ENUM_LEN) {
-    std::cout << "This is not a real action you stupid" << std::endl;
-    abort();
-  }
+  if (button == DigitalActionState::ENUM_LEN)
+    throw std::out_of_range{"This is not a real action you stupid"};
   _states.set((size_t)button, value);
 }
 

@@ -7,8 +7,7 @@
 
 #include "entities/player.h"
 
-enum NewPlayerChoice
-{
+enum NewPlayerChoice {
   PREVIOUS_PLAYER,
   NEXT_PLAYER,
   RANDOM_PLAYER

@@ -17,5 +17,6 @@ repos:
       - id: clang-tidy
         args: ["-extra-arg=-std=c++17"]
       - id: cppcheck
-        args: ["--language=c++", "-Iinclude/"]
+        exclude: ^tests/
+        args: ["--language=c++", "--std=c++11", "-Iinclude/"]
       # - id: cpplint
