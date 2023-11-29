@@ -8,3 +8,5 @@
 - Use shared pointer in vector (Using reference/pointer from vector is bad practice since the vector content can change)
 	-> List where (non exhaustive):
 	- Near Inprutcontroller pointer from input manager
+
+- For the Controller states, no needs of mutexes since only one writer

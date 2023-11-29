@@ -7,6 +7,8 @@
 #include "game.h"
 
 int main(int argc, char const *argv[]) {
+  (void)argc;
+  (void)argv;
   sf::RenderWindow window(sf::VideoMode(window_size_x, window_size_y), "Anarchic penguins è-é");
   window.setFramerateLimit(144);
 

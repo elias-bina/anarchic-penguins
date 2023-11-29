@@ -6,12 +6,12 @@
 #include "input/action-list.h"
 #include "input/input-controller.h"
 
-
+// TODO: Define the actions detection
 class InputManager {
 private:
-  bool isActionTriggered(DigitalActionList action, uint32_t controller_index);
-  bool isActionTriggered(AnalogActionList action, uint32_t controller_index);
-  float getAnalogActionPosition(AnalogActionList action, uint32_t controller_index);
+  bool isActionTriggered(DigitalActionState action, uint32_t controller_index);
+  bool isActionTriggered(AnalogActionState action, uint32_t controller_index);
+  float getAnalogActionPosition(AnalogActionState action, uint32_t controller_index);
 
   std::unordered_map<int32_t, InputController> _controller_list;
 
@@ -26,8 +26,8 @@ public:
   InputController *controllerFromIndex(uint32_t controller_index);
   InputController *controllerWithKeyboard();
 
-  bool isGlobalActionTriggered(DigitalActionList action);
-  bool isGlobalActionTriggered(AnalogActionList action);
+  bool isGlobalActionTriggered(DigitalActionState action);
+  bool isGlobalActionTriggered(AnalogActionState action);
 };
 
 #endif //_AN_PEN_INPUT_INPUT_MANAGER_H_

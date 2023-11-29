@@ -5,7 +5,7 @@
 #include "input/input-manager.h"
 
 InputManager::InputManager() : _is_keyboard_mapped{false} {
-  for (size_t num_joystick = 0; num_joystick < sf::Joystick::Count; num_joystick++) {
+  for (unsigned int num_joystick = 0; num_joystick < sf::Joystick::Count; num_joystick++) {
     if (sf::Joystick::isConnected(num_joystick)) {
       _controller_list[num_joystick] = InputController(num_joystick, !_is_keyboard_mapped);
       _is_keyboard_mapped = true;
