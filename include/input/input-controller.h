@@ -37,6 +37,8 @@ public:
   void give_keyboard();
   void remove_keyboard();
   bool has_keyboard();
+
+  sf::Vector2f get_vector_move();
 };
 
 #endif //_AN_PEN_INPUT_INPUT_CONTROLLER_H_

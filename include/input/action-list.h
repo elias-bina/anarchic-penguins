@@ -3,29 +3,36 @@
 
 #include <bitset>
 
+#include <SFML/System/Vector2.hpp>
+
 enum class AnalogActionState
 {
-  PRIMARY_LEFT,
-  PRIMARY_RIGHT,
-  PRIMARY_UP,
-  PRIMARY_DOWN,
+  PRIMARY_HORIZONTAL,
+  PRIMARY_VERTICAL,
 
-  SECONDARY_LEFT,
-  SECONDARY_RIGHT,
-  SECONDARY_UP,
-  SECONDARY_DOWN,
+  SECONDARY_HORIZONTAL,
+  SECONDARY_VERTICAL,
 
   LEFT_TRIGGER,
   RIGHT_TRIGGER,
-  ENUM_LEN
 };
 
 class AnalogActionStateList {
 public:
   AnalogActionStateList() = default;
 
+  void set_axis_value(AnalogActionState axis, float value);
+
+  sf::Vector2f get_primary_state();
+  sf::Vector2f get_secondary_state();
+  float get_trigger(AnalogActionState trigger);
+
+
 private:
-  float states[(unsigned int)AnalogActionState::ENUM_LEN];
+  sf::Vector2f _primary_state;
+  sf::Vector2f _secondary_state;
+  float _left_trigger;
+  float _right_trigger;
 };
 
 enum class DigitalActionState
@@ -55,8 +62,11 @@ class DigitalActionStateList {
 public:
   DigitalActionStateList() = default;
 
+  void set_button_value(DigitalActionState button, bool value);
+  bool get_button_value(DigitalActionState button);
+
 private:
-  std::bitset<(size_t)AnalogActionState::ENUM_LEN> states;
+  std::bitset<(size_t)DigitalActionState::ENUM_LEN> _states;
 };
 
 #endif //_AN_PEN_INPUT_ACTION_LIST_H_

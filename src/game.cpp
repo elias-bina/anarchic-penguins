@@ -55,18 +55,21 @@ void Game::run() {
         _input_manager.disconnectJoystick(event.joystickConnect.joystickId);
         break;
 
-      case sf::Event::KeyPressed:
+      case sf::Event::KeyPressed: {
+        InputController *controller = _input_manager.controllerWithKeyboard();
         if (_gameworld.has_uncontrolled_player()) {
-          InputController *controller = _input_manager.controllerWithKeyboard();
           if (!controller->has_player())
             _gameworld.bind_player(controller);
         }
         break;
+      }
 
       default:
         break;
       }
     }
+
+    // TODO: Linked list of events to set the state byt getting the right controller (sort the list ?)
 
     // // TODO: Check if there is a player with unbinded controller
     // Player * player = _gameworld.get_free_player(NEXT_PLAYER, 0);

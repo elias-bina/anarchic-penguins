@@ -26,3 +26,5 @@ bool InputController::has_player() { return _has_player; }
 void InputController::give_keyboard() { _is_keyboard_holder = true; }
 void InputController::remove_keyboard() { _is_keyboard_holder = false; }
 bool InputController::has_keyboard() { return _is_keyboard_holder; }
+
+sf::Vector2f InputController::get_vector_move() { return _analog_actions.get_primary_state(); }
