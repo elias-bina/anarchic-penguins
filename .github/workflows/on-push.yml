@@ -21,4 +21,4 @@ jobs:
     steps:
       - name: Input tests
         run: |
-          cd ${{ github.workspace }} && ./bin/tests-input
+          cd ${{ github.workspace }} && ./bin/tests-input --verbose

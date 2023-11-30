@@ -149,6 +149,3 @@ Test(digital_actions, list_fuzz_multiple_set) {
     all_actions.clear();
   }
 }
-
-// TODO
-// Verify that get trigger aborts
