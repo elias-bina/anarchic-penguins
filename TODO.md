@@ -10,3 +10,6 @@
 	- Near Inprutcontroller pointer from input manager
 
 - For the Controller states, no needs of mutexes since only one writer
+
+
+- Test the 'bind_player' func

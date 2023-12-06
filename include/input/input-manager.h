@@ -18,7 +18,8 @@ private:
   bool _is_keyboard_mapped;
 
 public:
-  InputManager();
+  explicit InputManager(bool auto_connect);
+  explicit InputManager();
 
   void connectJoystick(uint32_t joystick_id);
   void disconnectJoystick(uint32_t joystick_id);

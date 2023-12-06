@@ -4,11 +4,16 @@
 
 #include "input/input-manager.h"
 
-InputManager::InputManager() : _is_keyboard_mapped{false} {
-  for (unsigned int num_joystick = 0; num_joystick < sf::Joystick::Count; num_joystick++) {
-    if (sf::Joystick::isConnected(num_joystick)) {
-      _controller_list[num_joystick] = InputController(num_joystick, !_is_keyboard_mapped);
-      _is_keyboard_mapped = true;
+
+InputManager::InputManager() : InputManager{true} {}
+
+InputManager::InputManager(bool auto_connect) : _is_keyboard_mapped{false} {
+  if (auto_connect) {
+    for (unsigned int num_joystick = 0; num_joystick < sf::Joystick::Count; num_joystick++) {
+      if (sf::Joystick::isConnected(num_joystick)) {
+        _controller_list[num_joystick] = InputController(num_joystick, !_is_keyboard_mapped);
+        _is_keyboard_mapped = true;
+      }
     }
   }
 
@@ -70,7 +75,7 @@ InputController *InputManager::controllerWithKeyboard() {
   }
   std::unordered_map<int32_t, InputController>::iterator controller_iterator =
       std::find_if(_controller_list.begin(), _controller_list.end(),
-                   [](std::pair<int32_t, InputController> c) { return !c.second.has_keyboard(); });
+                   [](std::pair<int32_t, InputController> c) { return c.second.has_keyboard(); });
   if (controller_iterator == _controller_list.end()) {
     return nullptr;
   }
