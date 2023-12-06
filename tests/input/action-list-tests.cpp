@@ -14,7 +14,7 @@ std::uniform_int_distribution<> distrib;
 constexpr size_t FUZZ_NB = 5;
 constexpr size_t INPUT_COMBINATIONS_TESTED = 10;
 
-Test(analog_actions, list_default_state) {
+Test(analog_actions, default_state) {
   AnalogActionStateList analog_list;
 
   cr_assert(analog_list.get_primary_state() == sf::Vector2f(0.0f, 0.0f));
@@ -27,7 +27,7 @@ Test(analog_actions, list_default_state) {
 }
 
 
-Test(analog_actions, list_wrong_trigger) {
+Test(analog_actions, wrong_trigger) {
   AnalogActionStateList analog_list;
   cr_assert_throw(analog_list.get_trigger(AnalogActionState::PRIMARY_HORIZONTAL), std::invalid_argument);
   cr_assert_throw(analog_list.get_trigger(AnalogActionState::SECONDARY_HORIZONTAL), std::invalid_argument);
@@ -35,7 +35,7 @@ Test(analog_actions, list_wrong_trigger) {
   cr_assert_throw(analog_list.get_trigger(AnalogActionState::SECONDARY_VERTICAL), std::invalid_argument);
 }
 
-Test(analog_actions, list_set_axis) {
+Test(analog_actions, set_axis) {
   AnalogActionStateList analog_list;
 
   analog_list.set_axis_value(AnalogActionState::PRIMARY_VERTICAL, 1.0f);
@@ -59,7 +59,7 @@ Test(analog_actions, list_set_axis) {
 #pragma GCC diagnostic pop
 }
 
-Test(analog_actions, list_check_norm) {
+Test(analog_actions, check_norm) {
   AnalogActionStateList analog_list;
 
   // Primary
@@ -102,18 +102,18 @@ Test(analog_actions, list_check_norm) {
 }
 
 
-Test(digital_actions, list_default_state) {
+Test(digital_actions, default_state) {
   DigitalActionStateList digital_list;
   for (DigitalActionState button = DigitalActionState::MAP_ACTION; button < DigitalActionState::ENUM_LEN; button++)
     cr_assert(digital_list.get_button_value(button) == false);
 }
 
-Test(digital_actions, list_fail_on_last) {
+Test(digital_actions, fail_on_last) {
   DigitalActionStateList digital_list;
   cr_assert_throw(digital_list.set_button_value(DigitalActionState::ENUM_LEN, true), std::out_of_range);
 }
 
-Test(digital_actions, list_fuzz_multiple_set) {
+Test(digital_actions, fuzz_multiple_set) {
   DigitalActionStateList digital_list;
 
   for (size_t i = 0; i < FUZZ_NB; i++) {

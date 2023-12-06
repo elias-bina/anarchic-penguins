@@ -39,6 +39,13 @@ public:
   bool has_keyboard();
 
   sf::Vector2f get_vector_move();
+  sf::Vector2f get_vector_camera();
+
+  void set_axis_value(AnalogActionState axis, float value);
+  void set_button_value(DigitalActionState button, bool value);
+
+  float get_trigger(AnalogActionState axis);
+  bool get_button_value(DigitalActionState button);
 };
 
 #endif //_AN_PEN_INPUT_INPUT_CONTROLLER_H_

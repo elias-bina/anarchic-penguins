@@ -28,3 +28,14 @@ void InputController::remove_keyboard() { _is_keyboard_holder = false; }
 bool InputController::has_keyboard() { return _is_keyboard_holder; }
 
 sf::Vector2f InputController::get_vector_move() { return _analog_actions.get_primary_state(); }
+sf::Vector2f InputController::get_vector_camera() { return _analog_actions.get_secondary_state(); }
+void InputController::set_axis_value(AnalogActionState axis, float value) {
+  _analog_actions.set_axis_value(axis, value);
+}
+void InputController::set_button_value(DigitalActionState button, bool value) {
+  _digital_actions.set_button_value(button, value);
+}
+
+float InputController::get_trigger(AnalogActionState axis) { return _analog_actions.get_trigger(axis); }
+
+bool InputController::get_button_value(DigitalActionState button) { return _digital_actions.get_button_value(button); }
