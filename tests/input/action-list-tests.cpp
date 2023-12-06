@@ -8,8 +8,8 @@
 #include "input/input-controller.h"
 #include "input/input-manager.h"
 
-std::mt19937 gen;
-std::uniform_int_distribution<> distrib;
+static std::mt19937 gen;
+static std::uniform_int_distribution<> distrib;
 
 constexpr size_t FUZZ_NB = 5;
 constexpr size_t INPUT_COMBINATIONS_TESTED = 10;

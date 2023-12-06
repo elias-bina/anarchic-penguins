@@ -6,6 +6,7 @@ TEST_INPUT_SRCS:=							\
 	$(INPUT-SRCS)							\
 	tests/input/action-list-tests.cpp		\
 	tests/input/input-controller-tests.cpp	\
+	tests/input/input-manager-tests.cpp		\
 	tests/input/tests-input.cpp
 
 
