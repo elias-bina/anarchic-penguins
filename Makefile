@@ -1,5 +1,6 @@
 
 .PHONY:all,true-all
+.DEFAULT:all
 
 all:true-all
 
