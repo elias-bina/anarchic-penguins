@@ -39,14 +39,6 @@ void Game::run() {
         _window.close();
         break;
 
-      case sf::Event::JoystickButtonPressed:
-        if (_gameworld.has_uncontrolled_player()) {
-          InputController *controller = _input_manager.controllerFromIndex(event.joystickButton.joystickId);
-          if (!controller->has_player())
-            _gameworld.bind_player(controller);
-        }
-        break;
-
       case sf::Event::JoystickConnected:
         _input_manager.connectJoystick(event.joystickConnect.joystickId);
         break;
@@ -55,14 +47,47 @@ void Game::run() {
         _input_manager.disconnectJoystick(event.joystickConnect.joystickId);
         break;
 
-      case sf::Event::KeyPressed: {
-        InputController *controller = _input_manager.controllerWithKeyboard();
-        if (_gameworld.has_uncontrolled_player()) {
-          if (!controller->has_player())
+      case sf::Event::JoystickButtonPressed: {
+        InputController *controller = _input_manager.controllerFromIndex(event.joystickButton.joystickId);
+        if (!controller->has_player()) {
+          if (_gameworld.has_uncontrolled_player())
             _gameworld.bind_player(controller);
         }
-        break;
-      }
+        controller->set_joystick_button_value(event.joystickButton.button, true);
+      } break;
+
+      case sf::Event::JoystickButtonReleased: {
+        InputController *controller = _input_manager.controllerFromIndex(event.joystickButton.joystickId);
+        controller->set_joystick_button_value(event.joystickButton.button, false);
+      } break;
+
+      case sf::Event::KeyPressed: {
+        InputController *controller = _input_manager.controllerWithKeyboard();
+        if (!controller->has_player()) {
+          if (_gameworld.has_uncontrolled_player())
+            _gameworld.bind_player(controller);
+        }
+        controller->set_key_value(event.key.code, true);
+      } break;
+
+      case sf::Event::KeyReleased: {
+        InputController *controller = _input_manager.controllerWithKeyboard();
+        controller->set_key_value(event.key.code, false);
+      } break;
+
+      case sf::Event::MouseButtonPressed: {
+        InputController *controller = _input_manager.controllerWithKeyboard();
+        if (!controller->has_player()) {
+          if (_gameworld.has_uncontrolled_player())
+            _gameworld.bind_player(controller);
+        }
+        controller->set_mouse_button_value(event.mouseButton.button, true);
+      } break;
+
+      case sf::Event::MouseButtonReleased: {
+        InputController *controller = _input_manager.controllerWithKeyboard();
+        controller->set_mouse_button_value(event.mouseButton.button, false);
+      } break;
 
       default:
         break;
