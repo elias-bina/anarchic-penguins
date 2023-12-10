@@ -36,6 +36,7 @@ void GameWorld::unbind_player(InputController *input_controller) {
     return;
   }
   free_player_iterator->unset_input_controller();
+  _all_player_controlled = false;
 }
 
 

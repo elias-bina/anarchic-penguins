@@ -24,6 +24,7 @@ public:
 
   sf::Vector2f get_primary_state();
   sf::Vector2f get_secondary_state();
+  float get_raw_axis(AnalogActionState axis);
   float get_trigger(AnalogActionState trigger);
 
 

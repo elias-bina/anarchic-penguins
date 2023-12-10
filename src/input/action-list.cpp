@@ -42,6 +42,28 @@ sf::Vector2f AnalogActionStateList::get_primary_state() { return normalize_on_tr
 
 sf::Vector2f AnalogActionStateList::get_secondary_state() { return normalize_on_treshold(_secondary_state, 1.0); }
 
+float AnalogActionStateList::get_raw_axis(AnalogActionState axis) {
+  switch (axis) {
+  case AnalogActionState::PRIMARY_HORIZONTAL:
+    return _primary_state.x;
+    break;
+  case AnalogActionState::PRIMARY_VERTICAL:
+    return _primary_state.y;
+    break;
+
+  case AnalogActionState::SECONDARY_HORIZONTAL:
+    return _secondary_state.x;
+    break;
+  case AnalogActionState::SECONDARY_VERTICAL:
+    return _secondary_state.y;
+    break;
+
+  default:
+    throw std::invalid_argument{"I asked for an axiiiiiiiiiiiiis"};
+    break;
+  }
+}
+
 float AnalogActionStateList::get_trigger(AnalogActionState trigger) {
   switch (trigger) {
   case AnalogActionState::LEFT_TRIGGER:

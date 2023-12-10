@@ -21,6 +21,7 @@ Game::Game(sf::RenderWindow &window)
       _input_manager{} {}
 
 void Game::run() {
+  _window.setKeyRepeatEnabled(false);
   _window.setView(_main_view);
 
   std::thread updateThread(&Game::updateThreadFunc, this);
@@ -40,7 +41,14 @@ void Game::run() {
 
 
       case sf::Event::JoystickConnected:
-        _input_manager.connectJoystick(event.joystickConnect.joystickId);
+        if (_input_manager.controllerWithKeyboard()->has_player() &&
+            !_input_manager.controllerWithKeyboard()->has_joystick()) {
+          _gameworld.unbind_player(_input_manager.controllerWithKeyboard());
+          _input_manager.connectJoystick(event.joystickConnect.joystickId);
+          _gameworld.bind_player(_input_manager.controllerFromIndex(event.joystickConnect.joystickId));
+        } else {
+          _input_manager.connectJoystick(event.joystickConnect.joystickId);
+        }
         break;
       case sf::Event::JoystickDisconnected:
         _gameworld.unbind_player(_input_manager.controllerFromIndex(event.joystickConnect.joystickId));

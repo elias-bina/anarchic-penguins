@@ -103,11 +103,13 @@ void InputController::set_key_value(sf::Keyboard::Key key, bool value) {
   }
   // TODO: Manage better for mutliple keys
   if (_keyboard_to_analog_up.find(key) != _keyboard_to_analog_up.end()) {
-    set_axis_value(_keyboard_to_analog_up.at(key), value ? 1.0f : 0.0f);
+    AnalogActionState axis = _keyboard_to_analog_up.at(key);
+    set_axis_value(axis, _analog_actions.get_raw_axis(axis) + (value ? 1.0f : -1.0f));
     return;
   }
   if (_keyboard_to_analog_down.find(key) != _keyboard_to_analog_down.end()) {
-    set_axis_value(_keyboard_to_analog_down.at(key), value ? -1.0f : 0.0f);
+    AnalogActionState axis = _keyboard_to_analog_down.at(key);
+    set_axis_value(axis, _analog_actions.get_raw_axis(axis) + (value ? -1.0f : 1.0f));
     return;
   }
 }
