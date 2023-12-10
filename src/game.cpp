@@ -38,6 +38,7 @@ void Game::run() {
         _window.close();
         break;
 
+
       case sf::Event::JoystickConnected:
         _input_manager.connectJoystick(event.joystickConnect.joystickId);
         break;
@@ -45,6 +46,7 @@ void Game::run() {
         _gameworld.unbind_player(_input_manager.controllerFromIndex(event.joystickConnect.joystickId));
         _input_manager.disconnectJoystick(event.joystickConnect.joystickId);
         break;
+
 
       case sf::Event::JoystickButtonPressed: {
         InputController *controller = _input_manager.controllerFromIndex(event.joystickButton.joystickId);
@@ -59,10 +61,12 @@ void Game::run() {
         controller->set_joystick_button_value(event.joystickButton.button, false);
       } break;
 
+
       case sf::Event::JoystickMoved: {
         InputController *controller = _input_manager.controllerFromIndex(event.joystickMove.joystickId);
         controller->set_joystick_axis_value(event.joystickMove.axis, event.joystickMove.position);
       } break;
+
 
       case sf::Event::KeyPressed: {
         InputController *controller = _input_manager.controllerWithKeyboard();
@@ -77,6 +81,7 @@ void Game::run() {
         controller->set_key_value(event.key.code, false);
       } break;
 
+
       case sf::Event::MouseButtonPressed: {
         InputController *controller = _input_manager.controllerWithKeyboard();
         if (!controller->has_player()) {
@@ -89,6 +94,7 @@ void Game::run() {
         InputController *controller = _input_manager.controllerWithKeyboard();
         controller->set_mouse_button_value(event.mouseButton.button, false);
       } break;
+
 
       default:
         break;
