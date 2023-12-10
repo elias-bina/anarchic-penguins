@@ -3,6 +3,7 @@
 
 #include <SFML/System.hpp>
 
+#include <mutex>
 #include <random>
 
 #include "entities/entity.h"
@@ -14,6 +15,8 @@ private:
   InputController *_controller;
 
   sf::Vector2f _move_direction;
+
+  std::mutex *_controller_mutex;
 
 public:
   Player();
