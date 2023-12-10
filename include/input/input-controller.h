@@ -1,6 +1,7 @@
 #ifndef _AN_PEN_INPUT_INPUT_CONTROLLER_H_
 #define _AN_PEN_INPUT_INPUT_CONTROLLER_H_
 
+#include <SFML/Window/Joystick.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <memory>
@@ -47,9 +48,12 @@ public:
   void set_axis_value(AnalogActionState axis, float value);
   void set_button_value(DigitalActionState button, bool value);
 
+  // TODO: Add mouse for camera
   void set_key_value(sf::Keyboard::Key key, bool value);
   void set_mouse_button_value(sf::Mouse::Button button, bool value);
+
   void set_joystick_button_value(uint32_t button, bool value);
+  void set_joystick_axis_value(sf::Joystick::Axis axis, float value);
 
 
   float get_trigger(AnalogActionState axis);
