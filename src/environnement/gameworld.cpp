@@ -28,6 +28,16 @@ void GameWorld::bind_player(InputController *input_controller) {
   }
 }
 
+void GameWorld::unbind_player(InputController *input_controller) {
+  std::vector<Player>::iterator free_player_iterator;
+  free_player_iterator = std::find_if(_player_list.begin(), _player_list.end(),
+                                      [input_controller](Player p) { return p.check_controller(input_controller); });
+  if (free_player_iterator == _player_list.end()) {
+    return;
+  }
+  free_player_iterator->unset_input_controller();
+}
+
 
 bool GameWorld::has_uncontrolled_player() { return !_all_player_controlled; }
 

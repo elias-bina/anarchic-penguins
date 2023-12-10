@@ -24,12 +24,12 @@ static std::unordered_map<sf::Keyboard::Key, DigitalActionState> _keyboard_to_ac
 };
 
 static std::unordered_map<sf::Keyboard::Key, AnalogActionState> _keyboard_to_analog_up = {
-    {sf::Keyboard::Z, AnalogActionState::PRIMARY_VERTICAL},
+    {sf::Keyboard::S, AnalogActionState::PRIMARY_VERTICAL},
     {sf::Keyboard::D, AnalogActionState::PRIMARY_HORIZONTAL},
 };
 
 static std::unordered_map<sf::Keyboard::Key, AnalogActionState> _keyboard_to_analog_down = {
-    {sf::Keyboard::S, AnalogActionState::PRIMARY_VERTICAL},
+    {sf::Keyboard::Z, AnalogActionState::PRIMARY_VERTICAL},
     {sf::Keyboard::Q, AnalogActionState::PRIMARY_HORIZONTAL},
 };
 
@@ -101,6 +101,7 @@ void InputController::set_key_value(sf::Keyboard::Key key, bool value) {
     set_button_value(_keyboard_to_action.at(key), value);
     return;
   }
+  // TODO: Manage better for mutliple keys
   if (_keyboard_to_analog_up.find(key) != _keyboard_to_analog_up.end()) {
     set_axis_value(_keyboard_to_analog_up.at(key), value ? 1.0f : 0.0f);
     return;

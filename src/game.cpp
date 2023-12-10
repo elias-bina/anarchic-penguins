@@ -42,6 +42,7 @@ void Game::run() {
         _input_manager.connectJoystick(event.joystickConnect.joystickId);
         break;
       case sf::Event::JoystickDisconnected:
+        _gameworld.unbind_player(_input_manager.controllerFromIndex(event.joystickConnect.joystickId));
         _input_manager.disconnectJoystick(event.joystickConnect.joystickId);
         break;
 

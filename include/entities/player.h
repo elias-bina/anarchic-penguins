@@ -29,6 +29,7 @@ public:
   void unset_input_controller();
 
   bool has_controller();
+  bool check_controller(InputController *controller);
 
   std::mt19937 gen;
   std::uniform_int_distribution<> distrib;

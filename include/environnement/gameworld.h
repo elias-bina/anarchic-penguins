@@ -20,6 +20,7 @@ public:
 
   void add_new_player(Player Player);
   void bind_player(InputController *input_controller);
+  void unbind_player(InputController *input_controller);
 
   bool has_uncontrolled_player();
 
