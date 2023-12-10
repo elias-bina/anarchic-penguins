@@ -15,6 +15,8 @@ Player::~Player() {}
 
 void Player::Update(std::chrono::nanoseconds duration) {
   if (has_controller()) {
+    move_x_pixels(_controller->get_vector_move().x * duration * MAX_PLAYER_SPEED / std::chrono::seconds(1));
+    move_y_pixels(_controller->get_vector_move().y * duration * MAX_PLAYER_SPEED / std::chrono::seconds(1));
   } else {
     move_at_random(duration);
   }
@@ -58,3 +60,4 @@ void Player::set_input_controller(InputController *controller) { _controller = c
 void Player::unset_input_controller() { _controller = nullptr; }
 
 bool Player::has_controller() { return _controller != nullptr; }
+bool Player::check_controller(InputController *controller) { return _controller == controller; }
