@@ -31,7 +31,6 @@ void Game::run() {
 
 
   while (_window.isOpen()) {
-    // TODO: si un joystick unbind appuie sur un bouton, il prend le contrôle d'un player
     sf::Event event;
     while (_window.pollEvent(event)) {
       switch (event.type) {
@@ -42,7 +41,6 @@ void Game::run() {
       case sf::Event::JoystickConnected:
         _input_manager.connectJoystick(event.joystickConnect.joystickId);
         break;
-
       case sf::Event::JoystickDisconnected:
         _input_manager.disconnectJoystick(event.joystickConnect.joystickId);
         break;
@@ -55,10 +53,14 @@ void Game::run() {
         }
         controller->set_joystick_button_value(event.joystickButton.button, true);
       } break;
-
       case sf::Event::JoystickButtonReleased: {
         InputController *controller = _input_manager.controllerFromIndex(event.joystickButton.joystickId);
         controller->set_joystick_button_value(event.joystickButton.button, false);
+      } break;
+
+      case sf::Event::JoystickMoved: {
+        InputController *controller = _input_manager.controllerFromIndex(event.joystickMove.joystickId);
+        controller->set_joystick_axis_value(event.joystickMove.axis, event.joystickMove.position);
       } break;
 
       case sf::Event::KeyPressed: {
@@ -69,7 +71,6 @@ void Game::run() {
         }
         controller->set_key_value(event.key.code, true);
       } break;
-
       case sf::Event::KeyReleased: {
         InputController *controller = _input_manager.controllerWithKeyboard();
         controller->set_key_value(event.key.code, false);
@@ -83,7 +84,6 @@ void Game::run() {
         }
         controller->set_mouse_button_value(event.mouseButton.button, true);
       } break;
-
       case sf::Event::MouseButtonReleased: {
         InputController *controller = _input_manager.controllerWithKeyboard();
         controller->set_mouse_button_value(event.mouseButton.button, false);

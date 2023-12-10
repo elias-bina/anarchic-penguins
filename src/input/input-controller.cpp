@@ -23,6 +23,17 @@ static std::unordered_map<sf::Keyboard::Key, DigitalActionState> _keyboard_to_ac
     {sf::Keyboard::LControl, DigitalActionState::SECONDARY_JOY_CLICK},
 };
 
+static std::unordered_map<sf::Keyboard::Key, AnalogActionState> _keyboard_to_analog_up = {
+    {sf::Keyboard::Z, AnalogActionState::PRIMARY_VERTICAL},
+    {sf::Keyboard::D, AnalogActionState::PRIMARY_HORIZONTAL},
+};
+
+static std::unordered_map<sf::Keyboard::Key, AnalogActionState> _keyboard_to_analog_down = {
+    {sf::Keyboard::S, AnalogActionState::PRIMARY_VERTICAL},
+    {sf::Keyboard::Q, AnalogActionState::PRIMARY_HORIZONTAL},
+};
+
+
 static std::unordered_map<sf::Mouse::Button, DigitalActionState> _mouse_to_action = {
     {sf::Mouse::Left, DigitalActionState::X_BUTTON_ACTION},
     {sf::Mouse::Right, DigitalActionState::B_BUTTON_ACTION},
@@ -40,6 +51,16 @@ static std::unordered_map<uint32_t, DigitalActionState> _joystick_to_action = {
     {8, DigitalActionState::PRIMARY_UP_BUTTON},   {9, DigitalActionState::PRIMARY_DOWN_BUTTON},
     {10, DigitalActionState::PRIMARY_JOY_CLICK},  {11, DigitalActionState::SECONDARY_JOY_CLICK},
     {12, DigitalActionState::MAP_ACTION},         {13, DigitalActionState::PAUSE_ACTION},
+};
+
+// TODO: Check if this is the right mapping
+static std::unordered_map<sf::Joystick::Axis, AnalogActionState> _joystick_to_analog = {
+    {sf::Joystick::X, AnalogActionState::PRIMARY_HORIZONTAL},
+    {sf::Joystick::Y, AnalogActionState::PRIMARY_VERTICAL},
+    {sf::Joystick::Z, AnalogActionState::SECONDARY_HORIZONTAL},
+    {sf::Joystick::R, AnalogActionState::SECONDARY_VERTICAL},
+    {sf::Joystick::U, AnalogActionState::LEFT_TRIGGER},
+    {sf::Joystick::V, AnalogActionState::RIGHT_TRIGGER},
 };
 
 InputController::InputController(int32_t joystick_index, bool map_keyboard_to_this)
@@ -76,7 +97,18 @@ void InputController::set_button_value(DigitalActionState button, bool value) {
 }
 
 void InputController::set_key_value(sf::Keyboard::Key key, bool value) {
-  set_button_value(_keyboard_to_action.at(key), value);
+  if (_keyboard_to_action.find(key) != _keyboard_to_action.end()) {
+    set_button_value(_keyboard_to_action.at(key), value);
+    return;
+  }
+  if (_keyboard_to_analog_up.find(key) != _keyboard_to_analog_up.end()) {
+    set_axis_value(_keyboard_to_analog_up.at(key), value ? 1.0f : 0.0f);
+    return;
+  }
+  if (_keyboard_to_analog_down.find(key) != _keyboard_to_analog_down.end()) {
+    set_axis_value(_keyboard_to_analog_down.at(key), value ? -1.0f : 0.0f);
+    return;
+  }
 }
 void InputController::set_mouse_button_value(sf::Mouse::Button button, bool value) {
   set_button_value(_mouse_to_action.at(button), value);
@@ -84,6 +116,10 @@ void InputController::set_mouse_button_value(sf::Mouse::Button button, bool valu
 
 void InputController::set_joystick_button_value(uint32_t button, bool value) {
   set_button_value(_joystick_to_action.at(button), value);
+}
+
+void InputController::set_joystick_axis_value(sf::Joystick::Axis axis, float value) {
+  set_axis_value(_joystick_to_analog.at(axis), value / 100.0f);
 }
 
 
