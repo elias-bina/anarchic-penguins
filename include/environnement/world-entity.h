@@ -6,7 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "utils/position.h"
+#include "utils/health-pool.h"
 
 class WorldEntity : public sf::Transformable, public sf::Drawable {
 private:
@@ -16,6 +16,8 @@ protected:
 public:
   int32_t _z_position;
   int32_t _z_plane;
+
+  HealthPool health;
 
   WorldEntity();
 

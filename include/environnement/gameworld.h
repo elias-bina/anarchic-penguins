@@ -27,10 +27,11 @@ public:
   void draw(sf::RenderTarget &target, sf::RenderStates states) const;
   void Update(std::chrono::nanoseconds duration);
 
+
+private:
   std::mutex _player_list_mutex;
   std::mutex _player_disp_list_mutex;
 
-private:
   Player *get_free_player(NewPlayerChoice player_choice, uint32_t player_index);
 
   bool _all_player_controlled;

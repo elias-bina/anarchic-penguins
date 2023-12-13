@@ -6,11 +6,11 @@
 #include <mutex>
 #include <random>
 
-#include "entities/entity.h"
+#include "entities/movable-entity.h"
 #include "input/input-controller.h"
 
 
-class Player : public Entity {
+class Player : public MovableEntity {
 private:
   InputController *_controller;
 

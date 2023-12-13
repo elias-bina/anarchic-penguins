@@ -8,7 +8,7 @@ constexpr float MAX_PLAYER_SPEED = 200.0f;
 constexpr int32_t NB_MILLISECONDS_RANDOM_CONTINUES = 50;
 
 Player::Player()
-    : Entity(), _controller{nullptr}, _controller_mutex{new std::mutex()},
+    : MovableEntity(), _controller{nullptr}, _controller_mutex{new std::mutex()},
       gen(std::random_device()()), distrib{0, 3}, choice{0}, last_move_choice{std::chrono::steady_clock::now()} {}
 
 Player::~Player() {}
